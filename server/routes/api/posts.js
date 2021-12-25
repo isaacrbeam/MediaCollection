@@ -5,12 +5,14 @@ const mongodb = require('mongodb');
 const router=express.Router();
 
 //GET
+
 router.get('/', async (req,res)=>{
   const posts = await getAllStoredPosts();
   res.send(await posts.find({}).toArray());
   // res.send("HI");
 });
-//PUT
+
+//PUT / Updates reciord
 
 //DELETE
 router.delete('/:id',async (req,res)=>{
@@ -31,7 +33,7 @@ router.post('/', async (req,res)=>{
 
 async function getAllStoredPosts(){
   const client = await mongodb.MongoClient.connect(
-    'mongodb+srv://neo:matrix2021@learnvue.zjfv8.mongodb.net/LearnVue?retryWrites=true&w=majority',{
+    'mongodb+srv://neo:2021matrix@learnvue.zjfv8.mongodb.net/LearnVue?retryWrites=true&w=majority',{
       useNewURLParser: true
   });
   return client.db('LearnVue').collection('posts');
